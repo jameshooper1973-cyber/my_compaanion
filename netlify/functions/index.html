@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chatbot Browser – Living Bridge</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="frame">
+    <div class="bar">
+      <button id="addText" type="button">text</button>
+      <button id="addImage" type="button">image</button>
+      <button id="addApp" type="button">app</button>
+      <button id="addPrice" type="button">price</button>
+      <button id="addContact" type="button">contact</button>
+      <button id="openLibrary" type="button">media</button>
+      <label class="canvas-bg-label" title="Canvas background colour">
+        <span>bg</span>
+        <input type="color" id="canvasBgColor" value="#f8fafc" />
+      </label>
+    </div>
+
+    <main class="scroll">
+      <div id="canvasWrap" class="canvas-wrap">
+        <div id="cards" class="canvas"></div>
+      </div>
+
+      <div id="status" class="status-panel">
+        <span class="view-indicator" id="viewIndicator">View: customer</span>
+        <span class="view-indicator" id="bridgeIndicator">Bridge: off</span>
+        <span class="view-indicator" id="gridIndicator">Grid: 20px</span>
+        <span id="bounceCounter">Bounces: 0</span>
+        <span id="sludgeCount">Sludge: 0</span>
+      </div>
+    </main>
+  </div>
+
+  <button id="exitAdmin" class="admin-done" type="button">Done</button>
+
+  <div id="adminPrompt" class="modal-wrapper" hidden>
+    <div class="modal prompt-modal">
+      <h3>Enter admin PIN</h3>
+      <p>Admin mode unlocks editing, drag/resize, and the media library.</p>
+
+      <input
+        type="password"
+        id="pinInput"
+        placeholder="4-digit PIN"
+        maxlength="4"
+        inputmode="numeric"
+        pattern="[0-9]*"
+      />
+
+      <div class="prompt-actions">
+        <button id="cancelPinBtn" type="button" class="secondary">Cancel</button>
+        <button id="enterPinBtn" type="button">Enter</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mediaManager" class="modal-wrapper" hidden>
+    <div class="modal media-modal">
+      <div class="modal-topbar">
+        <div>
+          <h3>Image file manager</h3>
+          <p id="mediaTargetLabel">Upload a new image or choose one from the library.</p>
+        </div>
+        <button id="closeMediaBtn" type="button" class="secondary small-btn">Close</button>
+      </div>
+
+      <form id="uploadForm" class="upload-form">
+        <label>
+          <span>Image file</span>
+          <input id="imageFileInput" type="file" accept="image/*" />
+        </label>
+
+        <label>
+          <span>Title</span>
+          <input id="imageTitleInput" type="text" placeholder="Optional title" />
+        </label>
+
+        <label>
+          <span>Alt text</span>
+          <input id="imageAltInput" type="text" placeholder="Describe the image" />
+        </label>
+
+        <label class="full-width">
+          <span>Caption</span>
+          <textarea id="imageCaptionInput" rows="3" placeholder="Optional caption"></textarea>
+        </label>
+
+        <div class="upload-actions full-width">
+          <button id="uploadImageBtn" type="submit">Upload image</button>
+        </div>
+      </form>
+
+      <div id="mediaStatus" class="media-status">Library not loaded yet.</div>
+      <div id="mediaList" class="media-list"></div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
